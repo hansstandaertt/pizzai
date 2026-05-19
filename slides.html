@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Securex AI Platform</title>
+  <style>
+    :root {
+      /* Securex-inspired palette based on securex.be visual style */
+      --purple: #4b2a67;
+      --purple-dark: #35184f;
+      --purple-soft: #efe7f5;
+      --teal: #008c95;
+      --teal-soft: #e7f6f7;
+      --red: #e83b55;
+      --red-soft: #fde8ec;
+      --cream: #f7fbfd;
+      --dark: #231f20;
+      --muted: #5f5a66;
+      --light: #eef7fa;
+      --card: #ffffff;
+      --accent: #e83b55;
+      --blue: #4b2a67;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      background: linear-gradient(135deg, #eaf6f8 0%, #f5eef8 100%);
+      color: var(--dark);
+    }
+
+    /* Legacy deck layout no longer used after Reveal.js migration */
+    .deck {
+      display: none;
+    }
+
+    .reveal {
+      background: linear-gradient(135deg, #eaf6f8 0%, #f5eef8 100%);
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal section {
+      height: 720px;
+      width: 1280px;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden;
+      background: transparent !important;
+    }
+
+    .reveal section.present {
+      z-index: 10;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(247,251,253,0.96));
+      border-radius: 34px;
+      box-shadow: none;
+      padding: 70px 66px 54px 66px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: 46px;
+      top: 34px;
+      width: 130px;
+      height: 40px;
+      background-color: var(--purple);
+      background-image: url("https://www.securex.be/Securex/images/logo-white.svg");
+      background-repeat: no-repeat;
+      background-size: 100px auto;
+      background-position: center;
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(75,42,103,0.16);
+      z-index: 3;
+      display: none;
+    }
+
+    .slide:not(.hero-slide)::after {
+      display: block;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      border-radius: 34px 34px 0 0;
+      background: linear-gradient(
+        90deg,
+        var(--purple) 0%,
+        var(--purple) 62%,
+        var(--red) 62%,
+        var(--red) 78%,
+        var(--teal) 78%,
+        var(--teal) 100%
+      );
+      z-index: 2;
+    }
+
+    .reveal .slide-background {
+      background: transparent !important;
+    }
+
+    .reveal .slides section {
+      background: transparent !important;
+    }
+
+    .reveal .slides > section {
+      top: 0 !important;
+    }
+
+    .eyebrow {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      color: var(--teal);
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    @font-face {
+      font-family: "morebi_roundedbold";
+      src: url("https://www.securex.be/securex/fonts/morebirounded-bold-webfont.woff") format("woff");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    h1 {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      font-size: 58px;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin: 0 0 26px;
+      max-width: 980px;
+    }
+
+    h2 {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 0 0 26px;
+      max-width: 1000px;
+    }
+
+    h3 {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      font-size: 26px;
+      margin: 0 0 10px;
+      color: var(--purple-dark);
+    }
+
+    p, li {
+      font-size: 25px;
+      line-height: 1.35;
+    }
+
+    ul { padding-left: 30px; }
+
+    .lead {
+      font-size: 31px;
+      line-height: 1.32;
+      max-width: 1050px;
+      color: #263142;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 28px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(75, 42, 103, 0.10);
+      border: 1px solid rgba(75, 42, 103, 0.14);
+      border-bottom: 4px solid rgba(0, 140, 149, 0.22);
+    }
+
+    .card p {
+      margin: 0;
+      color: #374151;
+      font-size: 22px;
+    }
+
+    .number {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--purple);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .benefit {
+      color: var(--purple);
+      font-weight: 700;
+      margin-top: 12px !important;
+    }
+
+    .quote {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      background: var(--purple);
+      color: white;
+      border-radius: 26px;
+      padding: 38px 44px;
+      font-size: 35px;
+      line-height: 1.28;
+      margin-top: 40px;
+      max-width: 1060px;
+    }
+
+    .prompt {
+      font-family: Consolas, Menlo, monospace;
+      background: var(--purple-dark);
+      color: #f9fafb;
+      padding: 22px 26px;
+      border-radius: 18px;
+      font-size: 21px;
+      line-height: 1.35;
+      margin-top: 18px;
+    }
+
+    .warning {
+      border-left: 8px solid var(--red);
+      background: white;
+      border-radius: 18px;
+      padding: 28px 34px;
+      margin-top: 28px;
+    }
+
+    .tag {
+      font-family: "morebi_roundedbold", Arial, sans-serif;
+      display: inline-block;
+      background: var(--purple-soft);
+      color: var(--purple);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 18px;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .timeline .step {
+      background: white;
+      flex: 1;
+      padding: 24px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+    }
+
+    .timeline .year {
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .arch-box {
+      background: white;
+      border-radius: 24px;
+      padding: 22px 24px;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(75,42,103,0.10);
+      border-bottom: 4px solid rgba(0, 140, 149, 0.24);
+    }
+
+    .arch-diagram {
+      display: grid;
+      grid-template-columns: 1.1fr 0.6fr 1.1fr;
+      grid-template-rows: auto auto auto auto;
+      gap: 16px 22px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .arch-layer-title {
+      color: var(--teal);
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .arch-node {
+      background: white;
+      border-radius: 24px;
+      padding: 20px 24px;
+      box-shadow: 0 8px 24px rgba(75,42,103,0.10);
+      border: 1px solid rgba(75, 42, 103, 0.14);
+      border-bottom: 5px solid rgba(0, 140, 149, 0.24);
+      text-align: center;
+      min-height: 94px;
+    }
+
+    .arch-node.primary {
+      background: var(--purple);
+      color: white;
+      border-bottom-color: var(--red);
+    }
+
+    .arch-node.gateway {
+      background: var(--teal-soft);
+      border-bottom-color: var(--teal);
+    }
+
+    .arch-node.model {
+      background: var(--purple-soft);
+      border-bottom-color: var(--purple);
+    }
+
+    .arch-node h3 {
+      margin-bottom: 6px;
+    }
+
+    .arch-node.primary h3 {
+      color: white;
+    }
+
+    .arch-node p {
+      font-size: 18px;
+      margin: 0;
+      color: inherit;
+      opacity: 0.86;
+    }
+
+    .arch-connector {
+      text-align: center;
+      font-size: 34px;
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .arch-span {
+      grid-column: 1 / 4;
+    }
+
+    .mcp-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .mini-label {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.24);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    .arch-arrow {
+      text-align: center;
+      font-size: 36px;
+      color: var(--purple);
+      margin: 8px 0;
+    }
+
+    .brand-logo {
+      display: none;
+    }
+
+    .hero-slide {
+      background: linear-gradient(135deg, #ffffff 0%, #f7fbfd 100%);
+      padding: 84px 72px 56px 72px;
+    }
+
+    .hero-slide::after {
+      display: block;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .hero-title {
+      font-size: 80px;
+      letter-spacing: 0.02em;
+      color: var(--purple-dark);
+      margin-bottom: 18px;
+      max-width: none;
+    }
+
+    .hero-title .ai {
+      color: var(--red);
+    }
+
+    .hero-subtitle {
+      font-size: 32px;
+      color: var(--teal);
+      margin: 0 0 34px;
+    }
+
+    .hero-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .hero-detail {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      color: var(--purple-dark);
+      font-size: 22px;
+    }
+
+    .hero-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--purple-soft);
+      color: var(--teal);
+      font-size: 24px;
+      flex: 0 0 auto;
+    }
+
+    .pizza-card {
+      background: white;
+      border-radius: 34px;
+      padding: 38px;
+      box-shadow: 0 18px 45px rgba(75, 42, 103, 0.14);
+      border-bottom: 6px solid rgba(0, 140, 149, 0.25);
+      text-align: center;
+    }
+
+    .pizza-illustration {
+      font-size: 132px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .pizza-card h3 {
+      font-size: 32px;
+      color: var(--purple-dark);
+    }
+
+    .pizza-card p {
+      font-size: 24px;
+      color: var(--teal);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <div class="slide hero-slide">
+          <div class="hero-layout">
+            <div>
+              <div class="eyebrow">PIZZAI SESSION</div>
+              <h1 class="hero-title">PIZZ<span class="ai">AI</span> SESSION</h1>
+              <p class="hero-subtitle">From setup to real impact in one evening</p>
+              <p class="lead">A hands-on introduction to the Securex AI platform: OpenWebUI, Codex, MCP integrations and real enterprise use cases.</p>
+
+              <div class="hero-details">
+                <div class="hero-detail"><div class="hero-icon">📅</div><div>26 May 2026<br/>17h – 20h30</div></div>
+                <div class="hero-detail"><div class="hero-icon">📍</div><div>Ghent Building<br/><em>Living Space</em></div></div>
+                <div class="hero-detail"><div class="hero-icon">💻</div><div>Bring your laptop<br/><em>We’ll handle the pizza</em></div></div>
+                <div class="hero-detail"><div class="hero-icon">🚀</div><div>Hands-on AI<br/><em>No fluff</em></div></div>
+              </div>
+            </div>
+
+            <div class="pizza-card">
+              <div class="pizza-illustration">🍕</div>
+              <h3>Less hype, more doing</h3>
+              <p>Explore, experiment and share what works.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="slide">
+          <div class="eyebrow">What’s on the menu?</div>
+          <h2>What we’ll explore together</h2>
+          <div class="grid-2">
+            <div class="card"><h3>1. What is AI really?</h3><p>Why AI is not new and what changed recently.</p></div>
+            <div class="card"><h3>2. What is an LLM?</h3><p>How large language models actually work.</p></div>
+            <div class="card"><h3>3. MCP & enterprise context</h3><p>Why integrations matter more than the chatbot itself.</p></div>
+            <div class="card"><h3>4. Our Securex setup</h3><p>Architecture, governance, tooling and demos.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section><div class="slide"><div class="eyebrow">Artificial Intelligence</div><h2>AI is not new</h2><p class="lead">Artificial Intelligence has existed for decades. The recent boom is the result of multiple technological breakthroughs converging together.</p><div class="timeline"><div class="step fragment"><div class="year">1950s</div><p>First AI concepts and machine reasoning.</p></div><div class="step fragment"><div class="year">1980s</div><p>Expert systems and rule-based automation.</p></div><div class="step fragment"><div class="year">2010s</div><p>Deep learning and neural networks mature.</p></div><div class="step fragment"><div class="year">2022+</div><p>ChatGPT makes AI accessible to everyone.</p></div></div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Why now?</div><h2>What made AI explode in recent years?</h2><div class="grid-3"><div class="card fragment"><h3>Transformers</h3><p>New model architecture capable of understanding language context at massive scale.</p></div><div class="card fragment"><h3>Scale & GPUs</h3><p>Huge datasets and cloud computing power enabled much larger models.</p></div><div class="card fragment"><h3>Usability</h3><p>Chat interfaces made AI accessible to non-technical users.</p></div></div><div class="quote fragment">AI became mainstream the moment it became usable and accessible for everyone — not just researchers.</div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Large Language Models</div><h2>What is an LLM?</h2><p class="lead">A Large Language Model predicts the next most likely token based on context.</p><div class="grid-2"><div class="card fragment"><h3>Good analogy</h3><p>Think of it as autocomplete on steroids.</p></div><div class="card fragment"><h3>Important nuance</h3><p>LLMs do not “know” facts like a database.</p></div></div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">MCP</div><h2>What are MCP servers?</h2><p class="lead">MCP allows AI systems to securely interact with enterprise tools and systems.</p><div class="grid-2"><div class="card fragment"><h3>Without MCP</h3><p>The model only knows its training data.</p></div><div class="card fragment"><h3>With MCP</h3><p>The model can interact with Confluence, Jira and Bitbucket.</p></div></div><div class="quote fragment">An LLM without MCP is like a very smart employee without an access badge.</div></div></section>
+
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Behind the scenes</div>
+          <h2>How the Securex AI platform works</h2>
+
+          <div class="arch-diagram">
+            <div class="arch-node primary fragment">
+              <div class="arch-layer-title" style="color:white; opacity:.8;">User entry point</div>
+              <h3>OpenWebUI</h3>
+              <p>For knowledge workers, product teams, architects and support roles</p>
+              <span class="mini-label">ai.securex.be</span>
+            </div>
+
+            <div class="arch-connector fragment">+</div>
+
+            <div class="arch-node primary fragment">
+              <div class="arch-layer-title" style="color:white; opacity:.8;">Developer entry point</div>
+              <h3>Codex CLI</h3>
+              <p>For engineers working directly with repositories and code</p>
+              <span class="mini-label">terminal / IDE</span>
+            </div>
+
+            <div class="arch-connector arch-span fragment">↓ one governed AI access layer ↓</div>
+
+            <div class="arch-node gateway arch-span fragment">
+              <div class="arch-layer-title">Governance layer</div>
+              <h3>Azure APIM</h3>
+              <p>Central control for routing, authentication, throttling, monitoring and policy enforcement</p>
+            </div>
+
+            <div class="arch-connector arch-span fragment">↓ model gateway ↓</div>
+
+            <div class="arch-node model arch-span fragment">
+              <div class="arch-layer-title">Model layer</div>
+              <h3>Azure AI Foundry / GPT model</h3>
+              <p>Enterprise model access without uncontrolled direct consumption</p>
+            </div>
+
+            <div class="arch-connector arch-span fragment">↓ enterprise context through MCP ↓</div>
+
+            <div class="arch-span mcp-row fragment">
+              <div class="arch-node"><h3>Confluence MCP</h3><p>Documentation</p></div>
+              <div class="arch-node"><h3>Jira MCP</h3><p>Tickets & delivery</p></div>
+              <div class="arch-node"><h3>Bitbucket MCP</h3><p>Code context</p></div>
+              <div class="arch-node"><h3>Future MCPs</h3><p>More tools later</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section><div class="slide"><div class="eyebrow">Everyone online</div><h1>How colleagues can use OpenWebUI in practice</h1><p class="lead">A secure chat experience connected to company tools, knowledge and workflows.</p><div class="quote">Helping colleagues find, understand and act faster — using Securex context.</div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Find your table</div><h2>Think of OpenWebUI as your AI workbench</h2><div class="grid-3"><div class="card fragment"><div class="number">1</div><h3>Ask</h3><p>Use natural language.</p></div><div class="card fragment"><div class="number">2</div><h3>Attach context</h3><p>Upload files and connect knowledge.</p></div><div class="card fragment"><div class="number">3</div><h3>Use tools</h3><p>Interact with Jira, Confluence and Bitbucket.</p></div></div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Developer enablement</div><h2>Codex: AI for software engineering</h2><div class="grid-3"><div class="card fragment"><h3>Understand code</h3><p>Explain repositories and dependencies.</p></div><div class="card fragment"><h3>Accelerate delivery</h3><p>Generate tests and refactor code.</p></div><div class="card fragment"><h3>Use company context</h3><p>Combine code with Jira and Confluence.</p></div></div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">First real use cases</div><h2>Where this platform creates immediate value</h2><div><span class="tag">Knowledge discovery</span><span class="tag">Documentation summaries</span><span class="tag">Ticket refinement</span><span class="tag">Stakeholder communication</span><span class="tag">Code understanding</span><span class="tag">Meeting preparation</span></div><div class="quote">The real value appears when AI is connected to the way we already work.</div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Experiment</div><h2>Things we can try live together</h2><div class="grid-2"><div class="card fragment"><h3>Confluence demo</h3><p>Summarize internal documentation.</p></div><div class="card fragment"><h3>Jira demo</h3><p>Summarize sprint blockers.</p></div><div class="card fragment"><h3>Bitbucket demo</h3><p>Explain repository architecture.</p></div><div class="card fragment"><h3>Cross-system demo</h3><p>Combine Jira, Confluence and code context.</p></div></div></div></section>
+
+      <section><div class="slide"><div class="eyebrow">Take-away box</div><h2>Concrete takeaways for the next working day</h2><p class="lead">The goal is to help people work faster, communicate clearer and reuse knowledge more effectively.</p><div class="quote">Explore, experiment and steal good prompts from each other along the way.</div></div></section>
+
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      fragments: true,
+      controlsLayout: 'bottom-right',
+      progress: true,
+      center: false,
+      width: 1280,
+      height: 720,
+      margin: 0.02
+    });
+  </script>
+
+  <style>
+    .reveal .controls {
+      color: var(--purple);
+      right: 24px;
+      bottom: 18px;
+      transform: scale(0.82);
+    }
+
+    .reveal .progress {
+      color: var(--teal);
+      height: 4px;
+    }
+
+    .reveal .slide-number {
+      background: var(--purple-soft);
+      color: var(--purple-dark);
+      border-radius: 999px;
+      padding: 4px 10px;
+      right: 82px;
+      bottom: 30px;
+      font-size: 14px;
+    }
+
+    @media print {
+      .slide {
+        page-break-after: always;
+        break-after: page;
+        box-shadow: none;
+      }
+
+      body {
+        background: white;
+      }
+    }
+  </style>
+</body>
+</html>
+
