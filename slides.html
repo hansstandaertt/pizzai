@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Securex AI Platform</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <style>
     :root {
       /* Securex-inspired palette based on securex.be visual style */
@@ -118,10 +119,6 @@
 
     .reveal .slides section {
       background: transparent !important;
-    }
-
-    .reveal .slides > section {
-      top: 0 !important;
     }
 
     .eyebrow {
@@ -498,6 +495,7 @@
       color: var(--teal);
       margin: 0;
     }
+
   </style>
 </head>
 <body>
@@ -616,7 +614,6 @@
     </div>
   </div>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
   <script>
     Reveal.initialize({
@@ -629,7 +626,9 @@
       center: false,
       width: 1280,
       height: 720,
-      margin: 0.02
+      margin: 0.02,
+      // Reveal's responsive scroll view stacks slides vertically, duplicating slide chrome.
+      scrollActivationWidth: null
     });
   </script>
 
@@ -670,4 +669,3 @@
   </style>
 </body>
 </html>
-
