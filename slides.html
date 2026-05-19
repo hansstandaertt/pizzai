@@ -514,7 +514,7 @@
               <div class="hero-details">
                 <div class="hero-detail"><div class="hero-icon">📅</div><div>26 May 2026<br/>17h – 20h30</div></div>
                 <div class="hero-detail"><div class="hero-icon">📍</div><div>Ghent Building<br/><em>Living Space</em></div></div>
-                <div class="hero-detail"><div class="hero-icon">💻</div><div>Bring your laptop<br/><em>We’ll handle the pizza</em></div></div>
+                <div class="hero-detail"><div class="hero-icon">💻</div><div>Bring your laptop<br/><em>We'll handle the pizza</em></div></div>
                 <div class="hero-detail"><div class="hero-icon">🚀</div><div>Hands-on AI<br/><em>No fluff</em></div></div>
               </div>
             </div>
@@ -530,8 +530,8 @@
 
       <section>
         <div class="slide">
-          <div class="eyebrow">What’s on the menu?</div>
-          <h2>What we’ll explore together</h2>
+          <div class="eyebrow">What's on the menu?</div>
+          <h2>What we'll explore together</h2>
           <div class="grid-2">
             <div class="card"><h3>1. What is AI really?</h3><p>Why AI is not new and what changed recently.</p></div>
             <div class="card"><h3>2. What is an LLM?</h3><p>How large language models actually work.</p></div>
@@ -541,13 +541,53 @@
         </div>
       </section>
 
-      <section><div class="slide"><div class="eyebrow">Artificial Intelligence</div><h2>AI is not new</h2><p class="lead">Artificial Intelligence has existed for decades. The recent boom is the result of multiple technological breakthroughs converging together.</p><div class="timeline"><div class="step fragment"><div class="year">1950s</div><p>First AI concepts and machine reasoning.</p></div><div class="step fragment"><div class="year">1980s</div><p>Expert systems and rule-based automation.</p></div><div class="step fragment"><div class="year">2010s</div><p>Deep learning and neural networks mature.</p></div><div class="step fragment"><div class="year">2022+</div><p>ChatGPT makes AI accessible to everyone.</p></div></div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Artificial Intelligence</div>
+          <h2>AI is not new</h2>
+          <p class="lead">Artificial Intelligence has existed for decades. The recent boom is the result of converging factors: massive datasets, computational power, and breakthrough architectures.</p>
+          <div class="grid-2">
+            <div class="card fragment"><h3>Expert Systems (1970s-80s)</h3><p>Programmed knowledge bases that attempted to replicate expert reasoning.</p></div>
+            <div class="card fragment"><h3>Machine Learning (1990s-2000s)</h3><p>Algorithms that learn from data patterns rather than being explicitly programmed.</p></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Why now?</div><h2>What made AI explode in recent years?</h2><div class="grid-3"><div class="card fragment"><h3>Transformers</h3><p>New model architecture capable of understanding language context at massive scale.</p></div><div class="card fragment"><h3>Scale & GPUs</h3><p>Huge datasets and cloud computing power enabled much larger models.</p></div><div class="card fragment"><h3>Usability</h3><p>Chat interfaces made AI accessible to non-technical users.</p></div></div><div class="quote fragment">AI became mainstream the moment it became usable and accessible for everyone — not just researchers.</div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Why now?</div>
+          <h2>What made AI explode in recent years?</h2>
+          <div class="grid-3">
+            <div class="card fragment"><h3>Transformers</h3><p>New model architecture enabling parallel processing and better context understanding.</p></div>
+            <div class="card fragment"><h3>Scale</h3><p>Billions of parameters trained on massive internet-scale datasets.</p></div>
+            <div class="card fragment"><h3>Infrastructure</h3><p>GPU/TPU availability made training and inference economically viable.</p></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Large Language Models</div><h2>What is an LLM?</h2><p class="lead">A Large Language Model predicts the next most likely token based on context.</p><div class="grid-2"><div class="card fragment"><h3>Good analogy</h3><p>Think of it as autocomplete on steroids.</p></div><div class="card fragment"><h3>Important nuance</h3><p>LLMs do not “know” facts like a database.</p></div></div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Large Language Models</div>
+          <h2>What is an LLM?</h2>
+          <p class="lead">A Large Language Model predicts the next most likely token based on context. It doesn't truly "understand" but rather compresses statistical patterns from training data.</p>
+          <div class="grid-2">
+            <div class="card fragment"><h3>Training</h3><p>Learn patterns from text by predicting the next word billions of times.</p><span class="benefit">Result: emergent capabilities</span></div>
+            <div class="card fragment"><h3>Inference</h3><p>Generate text by repeatedly predicting the most probable next token.</p><span class="benefit">Result: coherent responses</span></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">MCP</div><h2>What are MCP servers?</h2><p class="lead">MCP allows AI systems to securely interact with enterprise tools and systems.</p><div class="grid-2"><div class="card fragment"><h3>Without MCP</h3><p>The model only knows its training data.</p></div><div class="card fragment"><h3>With MCP</h3><p>The model can interact with Confluence, Jira and Bitbucket.</p></div></div><div class="quote fragment">An LLM without MCP is like a very smart employee without an access badge.</div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">MCP</div>
+          <h2>What are MCP servers?</h2>
+          <p class="lead">MCP allows AI systems to securely interact with enterprise tools and systems. It's the bridge between raw LLM capability and real business context.</p>
+          <div class="grid-2">
+            <div class="card fragment"><h3>Real data access</h3><p>LLMs can read documentation, code, tickets, and databases without storing context in prompts.</p></div>
+            <div class="card fragment"><h3>Secure control</h3><p>Centralized governance ensures proper authentication, authorization, and audit trails.</p></div>
+          </div>
+        </div>
+      </section>
 
       <section>
         <div class="slide">
@@ -599,17 +639,90 @@
         </div>
       </section>
 
-      <section><div class="slide"><div class="eyebrow">Everyone online</div><h1>How colleagues can use OpenWebUI in practice</h1><p class="lead">A secure chat experience connected to company tools, knowledge and workflows.</p><div class="quote">Helping colleagues find, understand and act faster — using Securex context.</div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Everyone online</div>
+          <h2>How colleagues can use OpenWebUI in practice</h2>
+          <p class="lead">A secure chat experience connected to company tools, knowledge bases, and code repositories. No setup friction, instant value.</p>
+          <ul>
+            <li class="fragment">Write better faster: get help structuring thoughts and polishing writing</li>
+            <li class="fragment">Understand complexity: ask questions about company documentation and architecture</li>
+            <li class="fragment">Debug faster: search context about past issues and solutions</li>
+          </ul>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Find your table</div><h2>Think of OpenWebUI as your AI workbench</h2><div class="grid-3"><div class="card fragment"><div class="number">1</div><h3>Ask</h3><p>Use natural language.</p></div><div class="card fragment"><div class="number">2</div><h3>Attach context</h3><p>Upload files and connect knowledge.</p></div><div class="card fragment"><div class="number">3</div><h3>Use tools</h3><p>Interact with Jira, Confluence and Bitbucket.</p></div></div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Find your table</div>
+          <h2>Think of OpenWebUI as your AI workbench</h2>
+          <div class="grid-3">
+            <div class="card fragment"><div class="number">1</div><h3>Ask</h3><p>Your question or task in natural language</p></div>
+            <div class="card fragment"><div class="number">2</div><h3>Search</h3><p>AI searches company tools via MCP for relevant context</p></div>
+            <div class="card fragment"><div class="number">3</div><h3>Answer</h3><p>Get response grounded in your actual company data</p></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Developer enablement</div><h2>Codex: AI for software engineering</h2><div class="grid-3"><div class="card fragment"><h3>Understand code</h3><p>Explain repositories and dependencies.</p></div><div class="card fragment"><h3>Accelerate delivery</h3><p>Generate tests and refactor code.</p></div><div class="card fragment"><h3>Use company context</h3><p>Combine code with Jira and Confluence.</p></div></div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Developer enablement</div>
+          <h2>Codex: AI for software engineering</h2>
+          <div class="grid-3">
+            <div class="card fragment"><h3>Understand code</h3><p>Explain complex codebases, trace flows, find relevant files.</p></div>
+            <div class="card fragment"><h3>Generate code</h3><p>Create functions, tests, documentation from context and requirements.</p></div>
+            <div class="card fragment"><h3>Fix issues</h3><p>Debug faster by searching error patterns and solutions in your repos.</p></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">First real use cases</div><h2>Where this platform creates immediate value</h2><div><span class="tag">Knowledge discovery</span><span class="tag">Documentation summaries</span><span class="tag">Ticket refinement</span><span class="tag">Stakeholder communication</span><span class="tag">Code understanding</span><span class="tag">Meeting preparation</span></div><div class="quote">The real value appears when AI is connected to the way we already work.</div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">First real use cases</div>
+          <h2>Where this platform creates immediate value</h2>
+          <div>
+            <span class="tag">Knowledge discovery</span>
+            <span class="tag">Onboarding acceleration</span>
+            <span class="tag">Documentation search</span>
+            <span class="tag">Code understanding</span>
+            <span class="tag">Writing assistance</span>
+            <span class="tag">Decision support</span>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Experiment</div><h2>Things we can try live together</h2><div class="grid-2"><div class="card fragment"><h3>Confluence demo</h3><p>Summarize internal documentation.</p></div><div class="card fragment"><h3>Jira demo</h3><p>Summarize sprint blockers.</p></div><div class="card fragment"><h3>Bitbucket demo</h3><p>Explain repository architecture.</p></div><div class="card fragment"><h3>Cross-system demo</h3><p>Combine Jira, Confluence and code context.</p></div></div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Experiment</div>
+          <h2>Things we can try live together</h2>
+          <div class="grid-2">
+            <div class="card fragment"><h3>Confluence demo</h3><p>Summarize internal docs and find answers AI couldn't provide alone.</p></div>
+            <div class="card fragment"><h3>Code walkthrough</h3><p>Explain a complex service using live context from your repositories.</p></div>
+          </div>
+        </div>
+      </section>
 
-      <section><div class="slide"><div class="eyebrow">Take-away box</div><h2>Concrete takeaways for the next working day</h2><p class="lead">The goal is to help people work faster, communicate clearer and reuse knowledge more effectively.</p><div class="quote">Explore, experiment and steal good prompts from each other along the way.</div></div></section>
+      <section>
+        <div class="slide">
+          <div class="eyebrow">Take-away box</div>
+          <h2>Concrete takeaways for the next working day</h2>
+          <p class="lead">The goal is to help people work faster, communicate clearer, and focus on what actually matters. Not hype. Just tools that work.</p>
+          <div class="timeline">
+            <div class="step fragment">
+              <div class="timeline year">Today</div>
+              <p>Try OpenWebUI with your team</p>
+            </div>
+            <div class="step fragment">
+              <div class="timeline year">This week</div>
+              <p>Identify one real use case</p>
+            </div>
+            <div class="step fragment">
+              <div class="timeline year">This month</div>
+              <p>Measure impact on your work</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </div>
   </div>
